@@ -1,0 +1,343 @@
+* {
+  box-sizing: border-box !important;
+  margin: 0;
+  color: white;
+}
+
+body {
+  padding: 50px;
+  height: 100vh;
+  background-color: #444;
+}
+
+input, textarea {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.signin {
+  transform: translateY(0px);
+  transition: 0.7s;
+}
+.signin.signinup {
+  transform: translateY(-80px);
+}
+
+.signup {
+  transform: translateY(0px);
+  transition: 0.7s;
+}
+.signup.signupup {
+  transform: translateY(-115px);
+}
+
+.regipage {
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.regipage .regibox {
+  margin: 30px;
+  width: 320px;
+  height: 300px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.regipage .regibox .s1 {
+  height: 0px;
+  opacity: 0;
+  transform: translateY(80px);
+  transition: 0.4s;
+}
+.regipage .regibox .s1.show {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.regipage .regibox .s1 button {
+  padding: 5px 10px;
+  background-color: transparent;
+  font-size: 20px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  opacity: 0.3;
+  transition: 0.4;
+  cursor: pointer;
+}
+.regipage .regibox .s1 button:hover {
+  opacity: 0.8;
+}
+.regipage .regibox .s2 {
+  height: 0px;
+  opacity: 0;
+  transform: translateY(80px);
+  transition: 0.4s;
+}
+.regipage .regibox .s2.show {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.regipage .regibox .s2 button {
+  padding: 5px 10px;
+  background-color: transparent;
+  font-size: 20px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  opacity: 0.3;
+  transition: 0.4s;
+  cursor: pointer;
+}
+.regipage .regibox .s2 button:hover {
+  opacity: 0.8;
+}
+.regipage .regibox h1 {
+  margin-bottom: 30px;
+  font-size: 45px;
+  opacity: 0.2;
+  -webkit-animation: textIn 1s 0.6s backwards;
+          animation: textIn 1s 0.6s backwards;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.regipage .regibox h1:hover {
+  opacity: 1;
+}
+.regipage .regibox .title1.op1 {
+  opacity: 1;
+}
+.regipage .regibox .title2.op2 {
+  opacity: 1;
+}
+.regipage .regibox label {
+  font-size: 23px;
+  margin-right: 6px;
+}
+.regipage .regibox input {
+  height: 30px;
+  padding: 3px 6px;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+.regipage .stick {
+  width: 3px;
+  height: 320px;
+  opacity: 0.8;
+  background-color: #eee;
+  -webkit-animation: stickIn 1s 0.3s both ease-in-out;
+          animation: stickIn 1s 0.3s both ease-in-out;
+}
+
+@-webkit-keyframes stickIn {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes stickIn {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@-webkit-keyframes textIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+@keyframes textIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+.block {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(17, 17, 17, 0);
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  -webkit-animation: BlackIn 1.5s both;
+          animation: BlackIn 1.5s both;
+}
+
+@-webkit-keyframes BlackIn {
+  0% {
+    background-color: rgba(17, 17, 17, 0);
+  }
+  100% {
+    background-color: rgba(17, 17, 17, 0.6);
+  }
+}
+
+@keyframes BlackIn {
+  0% {
+    background-color: rgba(17, 17, 17, 0);
+  }
+  100% {
+    background-color: rgba(17, 17, 17, 0.6);
+  }
+}
+.box {
+  margin-bottom: 10px;
+}
+.box label {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.box label input:last-child {
+  width: 80%;
+}
+
+textarea {
+  resize: none;
+}
+
+@-webkit-keyframes blurIn {
+  0% {
+    filter: blur(0rem);
+  }
+  100% {
+    filter: blur(1rem);
+  }
+}
+
+@keyframes blurIn {
+  0% {
+    filter: blur(0rem);
+  }
+  100% {
+    filter: blur(1rem);
+  }
+}
+.wrapper {
+  filter: blur(0rem);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  -webkit-animation: blurIn 1.3s both ease-in;
+          animation: blurIn 1.3s both ease-in;
+}
+.wrapper .messageBox {
+  width: 50%;
+  background-color: #333 !important;
+  overflow-y: scroll;
+}
+.wrapper .messageBox h2 {
+  text-align: center;
+  margin: 30px;
+  font-size: 30px;
+  background-color: #333 !important;
+}
+.wrapper .messageBox .msg {
+  height: 80px;
+  margin-bottom: 50px;
+  background-color: #333;
+  padding: 10px 30px;
+}
+.wrapper .messageBox .msg .time {
+  padding: 5px;
+  font-size: 10px;
+}
+.wrapper .messageBox .msg .time span {
+  margin-right: 10px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.wrapper .messageBox .msg .userName {
+  padding: 1px 5px;
+  font-size: 19px;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.wrapper .messageBox .msg .userMsg {
+  padding: 5px;
+  color: #fafa7c;
+}
+.wrapper .messageBox .msg hr {
+  padding: 5px;
+  height: 6px;
+  border: none;
+  border-top: 1px solid white;
+  opacity: 0.4;
+}
+.wrapper .userBox {
+  position: relative;
+  height: 100%;
+  margin: 0 100px 0 100px;
+  align-items: center;
+}
+.wrapper .userBox .user_inner {
+  position: relative;
+  left: 20%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.wrapper .userBox .user_inner h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 30px;
+}
+.wrapper .userBox .user_inner .box {
+  margin-bottom: 20px;
+}
+.wrapper .userBox .user_inner .box input {
+  font-size: 16px;
+}
+.wrapper .userBox .user_inner .box textarea {
+  vertical-align: top;
+  font-size: 16px;
+}
+.wrapper .userBox .user_inner button {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  padding: 8px 15px;
+  font-size: 15px;
+  border: 0;
+  color: white;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  align-items: flex-end;
+  transition: 0.5s;
+}
+.wrapper .userBox .user_inner button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #ffc0cb;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #bb6573;
+}/*# sourceMappingURL=regi.css.map */

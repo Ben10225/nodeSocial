@@ -48,8 +48,14 @@ app.get("/",async function(req,res){
     return;
   }
 
-  res.render("index.ejs", {data:data});
+  res.render("regi.ejs", {data:data});
 });
+
+// app.get("/regi", function(req,res){
+//   res.render
+// });
+
+
 
 app.post("/stay",async function(req,res){
   const name = req.body.name;
