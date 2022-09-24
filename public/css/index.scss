@@ -1,0 +1,148 @@
+*{
+  box-sizing: border-box !important;
+  margin: 0;
+  background-color: #444;
+  // font-family: serif;
+  color: white;
+}
+body{
+  padding: 50px;
+  height: 100vh;
+}
+input, textarea{
+  border: none;
+  background-color: rgba(white, 0.1);
+  outline: none;
+}
+
+.box{
+  margin-bottom: 10px;
+  label{
+    cursor: pointer;
+    margin-right: 10px;
+    input{
+      &:last-child{
+        width: 80%;
+      }
+    }
+  }
+}
+textarea{
+  resize: none;
+}
+.wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  .messageBox{
+    width: 50%;
+    background-color: #333 !important;
+    overflow-y: scroll;
+    h2{
+      text-align: center;
+      margin: 30px;
+      font-size: 30px;
+      background-color: #333 !important;
+
+    }
+    .msg{
+      height: 80px;
+      margin-bottom: 50px;
+      background-color: #333 ;
+      padding:10px 30px;
+      .time{
+        padding: 5px;
+        font-size: 10px;
+        span{
+          margin-right: 10px;
+          letter-spacing: 2px;
+          color: rgba(white,0.4);
+        }
+      }
+      .userName{
+        padding: 1px 5px;
+        font-size: 19px;
+        letter-spacing: 2px;
+        color: #fff;
+
+      }
+      .userMsg{
+        padding: 5px;
+        color: rgba(rgb(250, 250, 124),1);
+      }
+      hr{
+        padding: 5px;
+        height: 6px;
+        border: none;
+        border-top: 1px solid white;
+        opacity: .4;
+      }
+    }
+
+  }
+  .userBox{
+    position: relative;
+    height: 100%;
+    margin: 0 100px 0 100px;
+    align-items: center;
+    .user_inner{
+      position: relative;
+      left: 20%;
+      top: 50%;
+      transform: translateY(-50%);
+      // text-align: right;
+      h2{
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 30px;
+        
+      }
+      .box{
+        margin-bottom: 20px;
+        input{
+          font-size: 16px;
+        }
+        textarea{
+          vertical-align: top;
+  
+          font-size: 16px;
+        }
+      }
+      button{
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        padding: 8px 15px;
+        font-size: 15px;
+        border: 0;
+        color: white;
+        border-radius: 10px;
+        background-color: rgba(white, 0.1);
+        align-items: flex-end;
+        transition: 0.5s;
+        &:hover{
+          // color: #bb6573;
+          // background-color: #ffc0cb;
+        background-color: rgba(white, 0.3);
+
+        }
+      }
+    }
+  }
+}
+
+//捲軸底色
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #ffc0cb;
+}
+//捲軸寬度
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+//捲軸本體顏色
+::-webkit-scrollbar-thumb {
+  background-color: #bb6573;
+}
