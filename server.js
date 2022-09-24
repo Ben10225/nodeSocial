@@ -51,9 +51,77 @@ app.get("/",async function(req,res){
   res.render("regi.ejs", {data:data});
 });
 
-// app.get("/regi", function(req,res){
-//   res.render
-// });
+app.post("/signup",async function(req,res){
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // let collection = db.collection("userInfo");
+
+  // let result =await collection.findOne({
+  //   name:name
+  // });
+  // if(result != null){
+  //   res.send("此暱稱已註冊，請換一個");
+  //   return ;
+  // }
+  // result =await collection.findOne({
+  //   email:email
+  // });
+  // if(result != null){
+  //   res.send("此信箱已註冊，請換一個");
+  //   return ;
+  // }
+  // await collection.insertOne({
+  //   name:name, email:email, password:password
+  // })
+
+
+  collection = db.collection("user");
+  let data = [];
+
+  result = await collection.find({});
+  await result.forEach(user => {
+    data.push(user);
+  });
+  res.render("index.ejs",{data:data})
+});
+
+// 回應前端 js 的路由
+app.post("/register",async function(req,res){
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if(name == ""){
+    return res.json({result:"暱稱欄請勿空白"});
+  }
+  if(email == ""){
+    return res.json({result:"信箱欄請勿空白"});
+  }
+  if(password == ""){
+    return res.json({result:"密碼欄請勿空白"});
+  }
+
+  let collection = db.collection("userInfo");
+
+  let result =await collection.findOne({
+    name:name
+  });
+  if(result != null){
+    return res.json({result:"此暱稱已註冊，請換一個"});
+  }
+  result =await collection.findOne({
+    email:email
+  });
+  if(result != null){
+    return res.json({result:"此信箱已註冊，請換一個"});
+  }
+  await collection.insertOne({
+    name:name, email:email, password:password
+  })
+  return res.json({result:"OK"});
+});
 
 
 

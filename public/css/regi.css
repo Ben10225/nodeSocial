@@ -129,6 +129,14 @@ input, textarea {
   margin-bottom: 30px;
   font-size: 20px;
 }
+.regipage .regibox .caution {
+  color: rgb(255, 65, 65);
+  font-weight: 300;
+  font-size: 22px;
+  margin-top: 10px;
+  opacity: 0;
+  transition: 0.4s;
+}
 .regipage .stick {
   width: 3px;
   height: 320px;
