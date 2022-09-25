@@ -210,18 +210,60 @@ textarea{
           right: 35%;
           margin-right: 50px;
           top: 0;
-          
         }
         &.leave{
           left: 60%;
           top: 0;
-  
+        }
+        &.room, &.leave{
+          &.roomClose{
+            visibility: hidden;
+            opacity: 0;
+          }
         }
         &:hover{
           opacity: 1;
         }
+        &.mkRoom, &.fdRoom{
+          visibility: hidden;
+          opacity: 0;
+          transition: 0.4s;
+          &.roomShow{
+            visibility: visible;
+            opacity: 0.7;
+            &:hover{
+              color: #ffbfca;
+              opacity: 1;
+            }
+          }
+        }
+        &.mkInput{
+          visibility: hidden ;
+          font-size: 15px;
+          opacity: 0;
+          &.mkInputShow{
+            opacity: 1;
+            visibility: visible;
+            cursor: default !important;
+
+          }
+        }
       }
     }
+  }
+}
+
+.caution{
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  color: rgb(255, 115, 115);
+  font-weight: 300;
+  opacity: 0;
+  transition: 0.4s;
+  &.c1{
+    opacity: 1;
   }
 }
 

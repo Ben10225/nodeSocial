@@ -57,7 +57,74 @@ function stay(){
       </div>
       `
   });
-
-  
 }
 
+let room = document.querySelector(".room");
+let leave = document.querySelector(".leave");
+let mkRoom =  document.querySelector(".mkRoom");
+let fdRoom =  document.querySelector(".fdRoom");
+let block = document.querySelector(".twobutton");
+let mkInput = document.querySelector(".mkInput");
+let makeItnum = document.querySelector(".makeItnum");
+let makeItpass = document.querySelector(".makeItpass");
+
+room.addEventListener("click", function(e){
+  // console.log("aa")
+  mkRoom.classList.add("roomShow");
+  fdRoom.classList.add("roomShow");
+  room.classList.add("roomClose");
+  leave.classList.add("roomClose");
+  window.addEventListener("click", function ck2(f){
+    if (block.contains(f.target)){
+      // console.log("inside");
+      mkRoom.addEventListener("click", function mkR(g){
+        // console.log("mk")
+        mkRoom.classList.remove("roomShow");
+        mkInput.classList.add("mkInputShow");
+        room.classList.remove("roomClose");
+        this.removeEventListener("click", mkR);
+        if(!block.contains(g.target)){
+          this.removeEventListener("click", mkR);
+        }
+      });
+    } else{
+      // console.log("outside")
+      mkRoom.classList.remove("roomShow");
+      fdRoom.classList.remove("roomShow");
+      room.classList.remove("roomClose");
+      leave.classList.remove("roomClose");
+      mkInput.classList.remove("mkInputShow");
+      this.removeEventListener("click", ck2);
+      makeItnum.value = "";
+      makeItpass.value = "";
+    }
+  });
+});
+
+let caution = document.querySelector(".caution");
+
+makeItpass.addEventListener("input", function(evt){
+  if(evt.target.value.length == 4){
+    let args = {room:makeItnum.value, password:evt.target.value};
+    fetch('/createRoom', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(args)})
+      .then((res)=>{
+        return res.json();
+      })
+      .then((data)=>{
+        if(data.result=="OK"){
+          console.log("創建");
+        }else{
+          caution.innerText = `${data.result}`
+          caution.classList.add("c1");
+          setTimeout(()=>{
+            caution.classList.remove("c1");
+          },1600);
+        }
+
+    });
+  }
+
+});

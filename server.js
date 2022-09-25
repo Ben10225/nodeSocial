@@ -217,6 +217,25 @@ app.get("/signout", function(req,res){
   res.redirect("/");
 });
 
+// 創房
+app.post("/createRoom", function(req,res){
+  const room = req.body.room;
+  const password = req.body.password;
+
+  if (room.length != 4) return res.json({result: "房號需要4碼"});
+  let collection = db.collection("roomInfo");
+  (async function(){
+    let result = await collection.findOne({room: room});
+    if(result){
+      return res.json({result: "此房號已註冊"});
+    }
+    await collection.insertOne({
+      room:room, password:password
+    });
+    return res.json({result:"OK"});
+  })()
+});
+
 // 啟動伺服器在 http:localhost:3000/
 app.listen(3001, function(){
   console.log("Server Started");

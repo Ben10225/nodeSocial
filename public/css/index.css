@@ -218,7 +218,48 @@ textarea {
   left: 60%;
   top: 0;
 }
+.wrapper .userBox .twobutton .btn.room.roomClose, .wrapper .userBox .twobutton .btn.leave.roomClose {
+  visibility: hidden;
+  opacity: 0;
+}
 .wrapper .userBox .twobutton .btn:hover {
+  opacity: 1;
+}
+.wrapper .userBox .twobutton .btn.mkRoom, .wrapper .userBox .twobutton .btn.fdRoom {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.4s;
+}
+.wrapper .userBox .twobutton .btn.mkRoom.roomShow, .wrapper .userBox .twobutton .btn.fdRoom.roomShow {
+  visibility: visible;
+  opacity: 0.7;
+}
+.wrapper .userBox .twobutton .btn.mkRoom.roomShow:hover, .wrapper .userBox .twobutton .btn.fdRoom.roomShow:hover {
+  color: #ffbfca;
+  opacity: 1;
+}
+.wrapper .userBox .twobutton .btn.mkInput {
+  visibility: hidden;
+  font-size: 15px;
+  opacity: 0;
+}
+.wrapper .userBox .twobutton .btn.mkInput.mkInputShow {
+  opacity: 1;
+  visibility: visible;
+  cursor: default !important;
+}
+
+.caution {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  color: rgb(255, 115, 115);
+  font-weight: 300;
+  opacity: 0;
+  transition: 0.4s;
+}
+.caution.c1 {
   opacity: 1;
 }
 
