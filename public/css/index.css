@@ -37,8 +37,42 @@ textarea {
   display: flex;
   justify-content: center;
 }
+.wrapper .memberBox {
+  width: 10%;
+  background-color: #333 !important;
+  overflow-y: scroll;
+  position: relative;
+  left: -50px;
+}
+.wrapper .memberBox h3 {
+  text-align: center;
+  margin: 30px;
+  font-size: 18px;
+  background-color: #333 !important;
+  letter-spacing: 2px;
+  position: relative;
+  left: 3px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.wrapper .memberBox .memberName {
+  background-color: #333;
+  padding: 4px 18px;
+  letter-spacing: 3px;
+  opacity: 0.3;
+}
+.wrapper .memberBox .memberName.checkup {
+  opacity: 1;
+  color: rgb(76, 255, 76);
+}
+.wrapper .memberBox .checkUser {
+  display: none;
+}
+.wrapper .memberBox::-webkit-scrollbar-track {
+  background-color: rgb(60, 60, 60);
+}
 .wrapper .messageBox {
-  width: 50%;
+  width: 45%;
   background-color: #333 !important;
   overflow-y: scroll;
 }
@@ -47,12 +81,37 @@ textarea {
   margin: 30px;
   font-size: 30px;
   background-color: #333 !important;
+  letter-spacing: 2px;
 }
 .wrapper .messageBox .msg {
   height: 80px;
   margin-bottom: 50px;
   background-color: #333;
   padding: 10px 30px;
+  opacity: 0;
+}
+.wrapper .messageBox .msg.msgIn {
+  -webkit-animation: msgIn 0.5s 0.3s both;
+          animation: msgIn 0.5s 0.3s both;
+}
+.wrapper .messageBox .msg.msgStay {
+  opacity: 1 !important;
+}
+@-webkit-keyframes msgIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes msgIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .wrapper .messageBox .msg .time {
   padding: 5px;
@@ -89,13 +148,18 @@ textarea {
 .wrapper .userBox .user_inner {
   position: relative;
   left: 20%;
-  top: 50%;
+  top: 60%;
   transform: translateY(-50%);
 }
 .wrapper .userBox .user_inner h2 {
-  text-align: center;
+  text-align: left;
+  letter-spacing: 3px;
   margin-bottom: 30px;
-  font-size: 30px;
+  font-size: 23px;
+}
+.wrapper .userBox .user_inner h2 span {
+  font-size: 35px;
+  color: #ffc0cb;
 }
 .wrapper .userBox .user_inner .box {
   margin-bottom: 20px;
@@ -122,6 +186,40 @@ textarea {
 }
 .wrapper .userBox .user_inner button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+.wrapper .userBox .twobutton {
+  display: flex;
+  position: relative;
+  top: 25%;
+  left: 20%;
+}
+.wrapper .userBox .twobutton .btn {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  border: 3px solid #bb6573;
+  border-radius: 20px;
+  color: #bb6573;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;
+  cursor: pointer !important;
+  transition: 0.4s;
+}
+.wrapper .userBox .twobutton .btn.room {
+  position: absolute;
+  right: 35%;
+  margin-right: 50px;
+  top: 0;
+}
+.wrapper .userBox .twobutton .btn.leave {
+  left: 60%;
+  top: 0;
+}
+.wrapper .userBox .twobutton .btn:hover {
+  opacity: 1;
 }
 
 ::-webkit-scrollbar-track {

@@ -61,6 +61,22 @@ input, textarea {
   transform: translateY(80px);
   transition: 0.4s;
 }
+@-webkit-keyframes s12In {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes s12In {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .regipage .regibox .s1.show {
   transform: translateY(0px);
   opacity: 1;
