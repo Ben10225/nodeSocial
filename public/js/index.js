@@ -14,7 +14,21 @@ for(let i of users){
 };
 
 function signout(){
-  window.location.href="/signout";
+  let name = document.querySelector(".user_inner h2 span");
+  // console.log(name.innerText);
+  let args = {name:name.innerText};
+  fetch("/signout", {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(args)})
+    .then((res)=>{
+      return res.json();
+    })
+    .then((data)=>{
+        window.location.href="/";
+
+    });
+  // window.location.href="/signout";
 };
 
 let msg = document.querySelectorAll(".msg");
@@ -103,6 +117,12 @@ room.addEventListener("click", function(e){
 
 let caution = document.querySelector(".caution");
 
+makeItnum.addEventListener("input", function(evt){
+  if(evt.target.value.length == 4){
+    makeItpass.value = "";
+  }
+});
+
 makeItpass.addEventListener("input", function(evt){
   if(evt.target.value.length == 4){
     let args = {room:makeItnum.value, password:evt.target.value};
@@ -126,5 +146,35 @@ makeItpass.addEventListener("input", function(evt){
 
     });
   }
-
 });
+
+// 即時更新線上人數
+setInterval(()=>{
+  console.log("aa");
+  let args ={name:""};
+  fetch("/getOnline", {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(args)
+  }).then((res)=>{
+    return res.json();
+  }).then((data)=>{
+    // console.log(data.online);
+
+    for(let i of users){
+        i.classList.remove("checkup");
+      }
+
+      let on =[];
+    for(let i of data.online){
+      on.push(i.name); 
+    };
+    for(let i of users){
+      let name = i.textContent;
+      if(on.includes(name)){
+        i.classList.add("checkup");
+      }
+      
+    };
+  });
+},5000)

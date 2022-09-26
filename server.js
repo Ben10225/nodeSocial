@@ -204,8 +204,10 @@ app.post("/stay",async function(req,res){
 });
 
 // 登出
-app.get("/signout", function(req,res){
-  const name = req.session.data;
+app.post("/signout", function(req,res){
+  // const name = req.session.data;
+  const name = req.body.name;
+  console.log(name);
   req.session.data = null;
   let collection = db.collection("user-online");
 
@@ -214,7 +216,8 @@ app.get("/signout", function(req,res){
       name: name
     });
   })()
-  res.redirect("/");
+  // res.redirect("/");
+  return res.json({result:"OK"});
 });
 
 // 創房
@@ -234,6 +237,17 @@ app.post("/createRoom", function(req,res){
     });
     return res.json({result:"OK"});
   })()
+});
+
+app.post("/getOnline",async function(req,res){
+  let online = [];
+  let collection = db.collection("user-online");
+
+  result = await collection.find({});
+  await result.forEach(username => {
+    online.push(username);
+  });
+  return res.json({online:online});
 });
 
 // 啟動伺服器在 http:localhost:3000/
