@@ -235,7 +235,7 @@ app.post("/createRoom", function(req,res){
     await collection.insertOne({
       room:room, password:password
     });
-    return res.json({result:"OK"});
+    return res.json({result: null,room:room});
   })()
 });
 
@@ -248,6 +248,50 @@ app.post("/getOnline",async function(req,res){
     online.push(username);
   });
   return res.json({online:online});
+});
+
+app.get("/openRoom",async function(req,res){
+  const room  = req.query.room;
+  // console.log(room);
+  db = client.db(room);
+
+  let collection = db.collection("roomMsg");
+  let data = [];
+  let memberLst =[];
+  let name = req.session.data;
+  let online = [];
+
+  let result = await collection.find({});
+  await result.forEach(user => {
+    data.push(user);
+  });
+
+  collection = db.collection("roomMember");
+  
+  // 增加自己
+  result = await collection.findOne({
+    name:name
+  });
+  if(!result){
+    result = await collection.insertOne({
+      name:name
+    });  
+  }
+
+  result = await collection.find({});
+  await result.forEach(user => {
+    memberLst.push(user.name);
+  });
+
+  collection = db.collection("room-online");
+  result = await collection.find({});
+  await result.forEach(username => {
+    online.push(username);
+  });
+
+  res.render("room.ejs",{data:data, memberLst:memberLst, online:online, name:name, room:room});
+
+
 });
 
 // 啟動伺服器在 http:localhost:3000/

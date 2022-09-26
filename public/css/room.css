@@ -1,0 +1,278 @@
+* {
+  box-sizing: border-box !important;
+  margin: 0;
+  background-color: rgb(46, 79, 128);
+  color: white;
+}
+
+body {
+  padding: 50px;
+  height: 100vh;
+}
+
+input, textarea {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.box {
+  margin-bottom: 10px;
+}
+.box label {
+  cursor: pointer;
+  margin-right: 10px;
+}
+.box label input:last-child {
+  width: 80%;
+}
+
+textarea {
+  resize: none;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.wrapper .memberBox {
+  width: 10%;
+  background-color: rgb(32, 54, 92) !important;
+  overflow-y: scroll;
+  position: relative;
+  left: -50px;
+}
+.wrapper .memberBox h3 {
+  text-align: center;
+  margin: 30px;
+  font-size: 18px;
+  background-color: rgb(32, 54, 92) !important;
+  letter-spacing: 2px;
+  position: relative;
+  left: 3px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.wrapper .memberBox .memberName {
+  background-color: rgb(32, 54, 92);
+  padding: 4px 18px;
+  letter-spacing: 3px;
+  opacity: 0.3;
+}
+.wrapper .memberBox .memberName.checkup {
+  opacity: 1;
+  color: rgb(255, 228, 56);
+}
+.wrapper .memberBox .checkUser {
+  display: none;
+}
+.wrapper .memberBox::-webkit-scrollbar-track {
+  background-color: rgb(144, 144, 144);
+}
+.wrapper .messageBox {
+  width: 45%;
+  background-color: rgb(77, 123, 139) !important;
+  overflow-y: scroll;
+}
+.wrapper .messageBox h2 {
+  text-align: center;
+  margin: 30px;
+  font-size: 30px;
+  background-color: rgb(46, 79, 128) !important;
+  letter-spacing: 2px;
+}
+.wrapper .messageBox .msg {
+  height: 80px;
+  margin-bottom: 50px;
+  background-color: rgba(147, 147, 147, 0.4);
+  padding: 10px 30px;
+  opacity: 0;
+}
+.wrapper .messageBox .msg.msgIn {
+  -webkit-animation: msgIn 0.5s 0.3s both;
+          animation: msgIn 0.5s 0.3s both;
+}
+.wrapper .messageBox .msg.msgStay {
+  opacity: 1 !important;
+}
+@-webkit-keyframes msgIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes msgIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.wrapper .messageBox .msg .time {
+  padding: 5px;
+  font-size: 10px;
+}
+.wrapper .messageBox .msg .time span {
+  margin-right: 10px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.4);
+}
+.wrapper .messageBox .msg .userName {
+  padding: 1px 5px;
+  font-size: 19px;
+  letter-spacing: 2px;
+  color: #fff;
+}
+.wrapper .messageBox .msg .userMsg {
+  padding: 5px;
+  color: #fafa7c;
+}
+.wrapper .messageBox .msg hr {
+  padding: 5px;
+  height: 6px;
+  border: none;
+  border-top: 1px solid white;
+  opacity: 0.4;
+}
+.wrapper .userBox {
+  position: relative;
+  height: 100%;
+  margin: 0 100px 0 100px;
+  align-items: center;
+}
+.wrapper .userBox .user_inner {
+  position: relative;
+  left: 20%;
+  top: 60%;
+  transform: translateY(-50%);
+}
+.wrapper .userBox .user_inner h2 {
+  text-align: left;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  font-size: 23px;
+}
+.wrapper .userBox .user_inner h2 span {
+  font-size: 35px;
+  color: #2ec4ff;
+}
+.wrapper .userBox .user_inner .box {
+  margin-bottom: 20px;
+}
+.wrapper .userBox .user_inner .box input {
+  font-size: 16px;
+}
+.wrapper .userBox .user_inner .box textarea {
+  vertical-align: top;
+  font-size: 16px;
+}
+.wrapper .userBox .user_inner button {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  padding: 8px 15px;
+  font-size: 15px;
+  border: 0;
+  color: white;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  align-items: flex-end;
+  transition: 0.5s;
+}
+.wrapper .userBox .user_inner button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.wrapper .userBox .twobutton {
+  display: flex;
+  position: relative;
+  top: 25%;
+  left: 20%;
+}
+.wrapper .userBox .twobutton .btn {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  border: 3px solid #bb6573;
+  border-radius: 20px;
+  color: #bb6573;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;
+  cursor: pointer !important;
+  transition: 0.4s;
+}
+.wrapper .userBox .twobutton .btn.room {
+  position: absolute;
+  right: 35%;
+  margin-right: 50px;
+  top: 0;
+}
+.wrapper .userBox .twobutton .btn.leave {
+  left: 60%;
+  top: 0;
+}
+.wrapper .userBox .twobutton .btn.room.roomClose, .wrapper .userBox .twobutton .btn.leave.roomClose {
+  visibility: hidden;
+  opacity: 0;
+}
+.wrapper .userBox .twobutton .btn:hover {
+  opacity: 1;
+}
+.wrapper .userBox .twobutton .btn.mkRoom, .wrapper .userBox .twobutton .btn.fdRoom {
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.4s;
+}
+.wrapper .userBox .twobutton .btn.mkRoom.roomShow, .wrapper .userBox .twobutton .btn.fdRoom.roomShow {
+  visibility: visible;
+  opacity: 0.7;
+}
+.wrapper .userBox .twobutton .btn.mkRoom.roomShow:hover, .wrapper .userBox .twobutton .btn.fdRoom.roomShow:hover {
+  color: #ffbfca;
+  opacity: 1;
+}
+.wrapper .userBox .twobutton .btn.mkInput {
+  visibility: hidden;
+  font-size: 15px;
+  opacity: 0;
+}
+.wrapper .userBox .twobutton .btn.mkInput.mkInputShow {
+  opacity: 1;
+  visibility: visible;
+  cursor: default !important;
+}
+
+.caution {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  transform: translateX(-50%);
+  color: rgb(255, 115, 115);
+  font-weight: 300;
+  opacity: 0;
+  transition: 0.4s;
+}
+.caution.c1 {
+  opacity: 1;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #899dde;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #bb6573;
+}/*# sourceMappingURL=room.css.map */

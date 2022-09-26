@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stay Message</title>
+
+  <link rel="stylesheet" href="/css/room.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="memberBox">
+      <h3 class="listTitle">用戶列表</h2>
+        <% for(let i=0;i<memberLst.length;i++){ %>
+          <div class="memberName"><%= memberLst[i] %></div>
+        <% } %>
+        <% for(let i=0;i<online.length;i++){ %>
+          <div class="checkUser"><%= online[i].name %></div>
+        <% } %>
+    </div>
+    <div class="messageBox">
+      <h2 class="listTitle">房 間&emsp;<%= room %></h2>
+      <% for(let i=0;i<data.length;i++){ %>
+        <div class="msg">
+          <div class="time">
+            <span><%= data[i].date %></span>
+            <span><%= data[i].time %></span>
+          </div>
+          <div class="userName"><%= data[i].name %> : </div>
+          <div class="userMsg"><%= data[i].msg %></div>
+          <hr>
+        </div>
+      <% } %>
+    </div>
+    <div class="userBox">
+      <div class="twobutton">
+        <div class="btn room">房 間</div>
+        <div class="btn leave" onclick="signout()">登 出</div>
+        <div class="btn room mkRoom">創建房間</div>
+        <div class="btn room mkInput">
+          <form action="">
+            <label for="">房號 (4碼)</label>
+            <input type="text" name="" maxlength="4" size="4" class="makeItnum"><br>
+            <label for="">密碼 (4碼)</label>
+            <input type="text" name="" maxlength="4" size="4" class="makeItpass"><br>
+            <h6 class="caution"></h6>
+          </form>
+        </div>
+        <div class="btn leave fdRoom">找尋房間</div>
+      </div>
+      <div class="user_inner">
+        <h2><span><%= name %></span>&emsp;想說些什麼</h2>
+        <form action="/stay" method="POST">
+          <div class="box">
+            <label for="msg">留 言</label>
+            <textarea type="text" name="msg" id="msg" rows="4" cols="20" ></textarea>
+          </div>
+          <button type="button" onclick="stay()">送出留言</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/room.js"></script>
+</body>
+</html>
