@@ -376,7 +376,7 @@ app.post("/leaveRoom",function(req,res){
     await result.forEach((data)=>{
       cklst.push(data)
     });
-    console.log(cklst.length);
+    // console.log(cklst.length);
 
     if(cklst.length==0){
       db = client.db(room);
