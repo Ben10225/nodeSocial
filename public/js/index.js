@@ -56,19 +56,24 @@ function stay(){
       return res.json();
     })
     .then((data)=>{
-      let content = document.querySelector(".messageBox");
-      content.innerHTML += `
-      <div class="msg msgStay">
-        <div class="time">
-            <span>${data.date}</span>
-            <span>${data.time}</span>
-          </div>
-          <div class="userName">${data.name}</div>
-          <div class="userMsg">${data.msg}</div>
-          <hr>
-        </div>
-      </div>
-      `
+      x.value = "";
+      setTimeout(()=>{
+        const element = document.querySelector(".forScroll");
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      },1100);
+      // let content = document.querySelector(".messageBox");
+      // content.innerHTML += `
+      // <div class="msg msgStay">
+      //   <div class="time">
+      //       <span>${data.date}</span>
+      //       <span>${data.time}</span>
+      //     </div>
+      //     <div class="userName">${data.name}</div>
+      //     <div class="userMsg">${data.msg}</div>
+      //     <hr>
+      //   </div>
+      // </div>
+      // `
   });
 }
 
@@ -78,8 +83,11 @@ let mkRoom =  document.querySelector(".mkRoom");
 let fdRoom =  document.querySelector(".fdRoom");
 let block = document.querySelector(".twobutton");
 let mkInput = document.querySelector(".mkInput");
+let psInput = document.querySelector(".psInput");
 let makeItnum = document.querySelector(".makeItnum");
 let makeItpass = document.querySelector(".makeItpass");
+let passItnum = document.querySelector(".passItnum");
+let passItpass = document.querySelector(".passItpass");
 
 room.addEventListener("click", function(e){
   // console.log("aa")
@@ -95,10 +103,42 @@ room.addEventListener("click", function(e){
         mkRoom.classList.remove("roomShow");
         mkInput.classList.add("mkInputShow");
         room.classList.remove("roomClose");
-        this.removeEventListener("click", mkR);
         if(!block.contains(g.target)){
           this.removeEventListener("click", mkR);
         }
+        block.addEventListener("click", function insidemkR(h){
+          if(fdRoom.contains(h.target)){
+            psInput.classList.add("psInputShow");
+            mkRoom.classList.add("roomShow");
+            room.classList.add("roomClose");
+            makeItnum.value = "";
+            makeItpass.value = "";
+            this.removeEventListener("click", insidemkR);
+          }
+        }); 
+      });
+      fdRoom.addEventListener("click", function mkL(g){
+        // console.log("mk")
+        fdRoom.classList.remove("roomShow");
+        psInput.classList.add("psInputShow");
+        mkInput.classList.remove("mkInputShow");
+        room.classList.add("roomClose");
+        this.removeEventListener("click", mkL);
+        if(!block.contains(g.target)){
+          this.removeEventListener("click", mkL);
+        }
+        block.addEventListener("click", function insidemkL(h){
+          if(mkRoom.contains(h.target)){
+            mkRoom.classList.remove("roomShow");
+            mkInput.classList.add("mkInputShow");
+            psInput.classList.remove("psInputShow");
+            fdRoom.classList.add("roomShow");
+            leave.classList.add("roomClose");
+            passItnum.value = "";
+            passItpass.value = "";
+            this.removeEventListener("click", insidemkL);
+          }
+        });
       });
     } else{
       // console.log("outside")
@@ -107,24 +147,31 @@ room.addEventListener("click", function(e){
       room.classList.remove("roomClose");
       leave.classList.remove("roomClose");
       mkInput.classList.remove("mkInputShow");
+      psInput.classList.remove("psInputShow");
       this.removeEventListener("click", ck2);
       makeItnum.value = "";
       makeItpass.value = "";
+      passItnum.value = "";
+      passItpass.value = "";
     }
   });
 });
 
-let caution = document.querySelector(".caution");
+let cautionC1 = document.querySelector(".caution.c1");
+let cautionC2 = document.querySelector(".caution.c2");
 
+// 創建房間
 makeItnum.addEventListener("input", function(evt){
   if(evt.target.value.length == 4){
     makeItpass.value = "";
+    makeItpass.focus();
   }
 });
 
 makeItpass.addEventListener("input", function(evt){
   if(evt.target.value.length == 4){
-    let args = {room:makeItnum.value, password:evt.target.value};
+    let name = document.querySelector(".user_inner h2 span").innerText;
+    let args = {room:makeItnum.value, password:evt.target.value, name:name};
     fetch('/createRoom', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -136,10 +183,43 @@ makeItpass.addEventListener("input", function(evt){
         if(!data.result){
           window.location.href=`/openRoom?room=${data.room}`;
         }else{
-          caution.innerText = `${data.result}`
-          caution.classList.add("c1");
+          cautionC1.innerText = `${data.result}`
+          cautionC1.classList.add("ctext");
           setTimeout(()=>{
-            caution.classList.remove("c1");
+            cautionC1.classList.remove("ctext");
+          },1600);
+        }
+    });
+  }
+});
+
+// 找尋房間
+passItnum.addEventListener("input", function(evt){
+  if(evt.target.value.length == 4){
+    passItpass.value = "";
+    passItpass.focus();
+  }
+});
+
+passItpass.addEventListener("input", function(evt){
+  if(evt.target.value.length == 4){
+    let name = document.querySelector(".user_inner h2 span").innerText;
+    let args = {room:passItnum.value, password:evt.target.value, name:name};
+    fetch('/findRoom', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(args)})
+      .then((res)=>{
+        return res.json();
+      })
+      .then((data)=>{
+        if(data.result=="OK"){
+          window.location.href=`/openRoom?room=${data.room}`;
+        }else{
+          cautionC2.innerText = `${data.result}`
+          cautionC2.classList.add("ctext");
+          setTimeout(()=>{
+            cautionC2.classList.remove("ctext");
           },1600);
         }
     });
@@ -148,7 +228,6 @@ makeItpass.addEventListener("input", function(evt){
 
 // 即時更新線上人數
 setInterval(()=>{
-  console.log("aa");
   let args ={name:""};
   fetch("/getOnline", {
     method: "POST",
@@ -173,4 +252,39 @@ setInterval(()=>{
       }
     };
   });
+},5000)
+
+
+// 即時更新留言板
+setTimeout(()=>{
+  setInterval(()=>{
+    fetch("/lobbyMsgUpdate", {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({})
+    }).then((res)=>{
+      return res.json();
+    }).then((data)=>{
+      if(data){
+        let on =[];
+        let content = document.querySelector(".msgOutter");
+        let underline = "";
+        // console.log(data.msg)
+        for(let i of data.msg){
+          underline += `
+          <div class="msg msgStay" id="${i.date}+${i.time}">
+            <div class="time">
+              <span>${i.date}</span>
+              <span>${i.time}</span>
+            </div>
+            <div class="userName">${i.name} : </div>
+            <div class="userMsg">${i.msg}</div>
+            <hr>
+          </div>
+          `
+        }
+        content.innerHTML = `${underline}`;
+      }
+    });
+  },1000)
 },5000)

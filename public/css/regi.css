@@ -199,7 +199,7 @@ input, textarea {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgba(17, 17, 17, 0);
+  background-color: #111111;
   width: 100%;
   height: 100%;
   z-index: 50;
@@ -265,8 +265,42 @@ textarea {
   -webkit-animation: blurIn 1.3s both ease-in;
           animation: blurIn 1.3s both ease-in;
 }
+.wrapper .memberBox {
+  width: 10%;
+  background-color: #333 !important;
+  overflow-y: scroll;
+  position: relative;
+  left: -50px;
+}
+.wrapper .memberBox h3 {
+  text-align: center;
+  margin: 30px;
+  font-size: 18px;
+  background-color: #333 !important;
+  letter-spacing: 2px;
+  position: relative;
+  left: 3px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.wrapper .memberBox .memberName {
+  background-color: #333;
+  padding: 4px 18px;
+  letter-spacing: 3px;
+  opacity: 0.3;
+}
+.wrapper .memberBox .memberName.checkup {
+  opacity: 1;
+  color: rgb(76, 255, 76);
+}
+.wrapper .memberBox .checkUser {
+  display: none;
+}
+.wrapper .memberBox::-webkit-scrollbar-track {
+  background-color: rgb(60, 60, 60);
+}
 .wrapper .messageBox {
-  width: 50%;
+  width: 45%;
   background-color: #333 !important;
   overflow-y: scroll;
 }
@@ -317,7 +351,7 @@ textarea {
 .wrapper .userBox .user_inner {
   position: relative;
   left: 20%;
-  top: 50%;
+  top: 60%;
   transform: translateY(-50%);
 }
 .wrapper .userBox .user_inner h2 {
@@ -364,4 +398,53 @@ textarea {
 
 ::-webkit-scrollbar-thumb {
   background-color: #bb6573;
+}
+
+.userBox {
+  position: relative;
+  height: 100%;
+  margin: 0 100px 0 100px;
+  align-items: center;
+}
+.userBox .user_inner {
+  position: relative;
+  left: 20%;
+  top: 60%;
+  transform: translateY(-50%);
+}
+.userBox .user_inner h2 {
+  text-align: left;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  font-size: 23px;
+}
+.userBox .user_inner h2 span {
+  font-size: 35px;
+  color: #ffc0cb;
+}
+.userBox .user_inner .box {
+  margin-bottom: 20px;
+}
+.userBox .user_inner .box input {
+  font-size: 16px;
+}
+.userBox .user_inner .box textarea {
+  vertical-align: top;
+  font-size: 16px;
+}
+.userBox .user_inner button {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  padding: 8px 15px;
+  font-size: 15px;
+  border: 0;
+  color: white;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  align-items: flex-end;
+  transition: 0.5s;
+}
+.userBox .user_inner button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }/*# sourceMappingURL=regi.css.map */

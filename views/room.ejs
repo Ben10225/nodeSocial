@@ -20,34 +20,26 @@
         <% } %>
     </div>
     <div class="messageBox">
-      <h2 class="listTitle">房 間&emsp;<%= room %></h2>
-      <% for(let i=0;i<data.length;i++){ %>
-        <div class="msg">
-          <div class="time">
-            <span><%= data[i].date %></span>
-            <span><%= data[i].time %></span>
+      <h2 class="listTitle">房 間&emsp;<%= room %><span style="display: none;"><%= room %></span></h2>
+      <div class="msgOutter" style="z-index: 100;">
+        <% for(let i=0;i<data.length;i++){ %>
+          <div class="msg">
+            <div class="time">
+              <span><%= data[i].date %></span>
+              <span><%= data[i].time %></span>
+            </div>
+            <div class="userName"><%= data[i].name %> : </div>
+            <div class="userMsg"><%= data[i].msg %></div>
+            <hr>
           </div>
-          <div class="userName"><%= data[i].name %> : </div>
-          <div class="userMsg"><%= data[i].msg %></div>
-          <hr>
-        </div>
-      <% } %>
+        <% } %>
+      </div>
+      <div class="forScroll"></div>
     </div>
     <div class="userBox">
       <div class="twobutton">
-        <div class="btn room">房 間</div>
-        <div class="btn leave" onclick="signout()">登 出</div>
-        <div class="btn room mkRoom">創建房間</div>
-        <div class="btn room mkInput">
-          <form action="">
-            <label for="">房號 (4碼)</label>
-            <input type="text" name="" maxlength="4" size="4" class="makeItnum"><br>
-            <label for="">密碼 (4碼)</label>
-            <input type="text" name="" maxlength="4" size="4" class="makeItpass"><br>
-            <h6 class="caution"></h6>
-          </form>
-        </div>
-        <div class="btn leave fdRoom">找尋房間</div>
+        <div class="btn backlobby" onclick="backlobby()">回到大廳</div>
+        <div class="btn leaveRoom" onclick="leaveRoom()">退&emsp;房</div>
       </div>
       <div class="user_inner">
         <h2><span><%= name %></span>&emsp;想說些什麼</h2>
@@ -56,7 +48,7 @@
             <label for="msg">留 言</label>
             <textarea type="text" name="msg" id="msg" rows="4" cols="20" ></textarea>
           </div>
-          <button type="button" onclick="stay()">送出留言</button>
+          <button type="button" onclick="roomStay()">送出留言</button>
         </form>
       </div>
     </div>

@@ -183,7 +183,7 @@ input, textarea{
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgba(#111, 0);
+  background-color: rgba(#111, 1);
   width: 100%;
   height: 100%;
   z-index: 50;
@@ -232,8 +232,44 @@ textarea{
   display: flex;
   justify-content: center;
   animation: blurIn 1.3s both ease-in;
+  .memberBox{
+    width: 10%;
+    background-color: #333 !important;
+    overflow-y: scroll;
+    position: relative;
+    left: -50px;
+    h3{
+      text-align: center;
+      margin: 30px;
+      font-size: 18px;
+      background-color: #333 !important;
+      letter-spacing: 2px;
+      position: relative;
+      left: 3px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+    .memberName{
+    background-color: #333;
+    // border: 1px solid #fff;
+    padding: 4px 18px;
+    letter-spacing: 3px;
+    opacity: 0.3;
+      &.checkup{
+        opacity: 1;  
+        color: rgb(76, 255, 76)
+      }
+    }
+    .checkUser{
+      display: none;
+    }
+    &::-webkit-scrollbar-track {
+      // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: rgb(60, 60, 60);
+    }
+  }
   .messageBox{
-    width: 50%;
+    width: 45%;
     background-color: #333 !important;
     overflow-y: scroll;
     h2{
@@ -286,7 +322,7 @@ textarea{
     .user_inner{
       position: relative;
       left: 20%;
-      top: 50%;
+      top: 60%;
       transform: translateY(-50%);
       // text-align: right;
       h2{
@@ -343,3 +379,58 @@ textarea{
 ::-webkit-scrollbar-thumb {
   background-color: #bb6573;
 }
+
+.userBox{
+    position: relative;
+    height: 100%;
+    margin: 0 100px 0 100px;
+    align-items: center;
+    .user_inner{
+      position: relative;
+      left: 20%;
+      top: 60%;
+      transform: translateY(-50%);
+      // text-align: right;
+      h2{
+        text-align: left;
+        letter-spacing: 3px ;
+        margin-bottom: 30px;
+        font-size: 23px;
+        span{
+          font-size: 35px;
+          color: #ffc0cb;
+        }
+        
+      }
+      .box{
+        margin-bottom: 20px;
+        input{
+          font-size: 16px;
+        }
+        textarea{
+          vertical-align: top;
+  
+          font-size: 16px;
+        }
+      }
+      button{
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        padding: 8px 15px;
+        font-size: 15px;
+        border: 0;
+        color: white;
+        border-radius: 10px;
+        background-color: rgba(white, 0.1);
+        align-items: flex-end;
+        transition: 0.5s;
+        &:hover{
+          // color: #bb6573;
+          // background-color: #ffc0cb;
+        background-color: rgba(white, 0.3);
+
+        }
+      }
+    }
+  }

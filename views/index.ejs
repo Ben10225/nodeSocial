@@ -21,17 +21,20 @@
     </div>
     <div class="messageBox">
       <h2 class="listTitle">大&emsp;廳</h2>
-      <% for(let i=0;i<data.length;i++){ %>
-        <div class="msg">
-          <div class="time">
-            <span><%= data[i].date %></span>
-            <span><%= data[i].time %></span>
+      <div class="msgOutter" style="z-index: 100;">
+        <% for(let i=0;i<data.length;i++){ %>
+          <div class="msg">
+            <div class="time">
+              <span><%= data[i].date %></span>
+              <span><%= data[i].time %></span>
+            </div>
+            <div class="userName"><%= data[i].name %> : </div>
+            <div class="userMsg"><%= data[i].msg %></div>
+            <hr>
           </div>
-          <div class="userName"><%= data[i].name %> : </div>
-          <div class="userMsg"><%= data[i].msg %></div>
-          <hr>
-        </div>
-      <% } %>
+        <% } %>
+      </div>
+      <div class="forScroll"></div>
     </div>
     <div class="userBox">
       <div class="twobutton">
@@ -44,10 +47,19 @@
             <input type="text" name="" maxlength="4" size="4" class="makeItnum"><br>
             <label for="">密碼 (4碼)</label>
             <input type="text" name="" maxlength="4" size="4" class="makeItpass"><br>
-            <h6 class="caution"></h6>
+            <h6 class="caution c1"></h6>
           </form>
         </div>
         <div class="btn leave fdRoom">找尋房間</div>
+        <div class="btn leave psInput">
+          <form action="">
+            <label for="">房號 (4碼)</label>
+            <input type="text" name="" maxlength="4" size="4" class="passItnum"><br>
+            <label for="">密碼 (4碼)</label>
+            <input type="text" name="" maxlength="4" size="4" class="passItpass"><br>
+            <h6 class="caution c2"></h6>
+          </form>
+        </div>
       </div>
       <div class="user_inner">
         <h2><span><%= name %></span>&emsp;想說些什麼</h2>
